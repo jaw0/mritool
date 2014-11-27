@@ -1,0 +1,17 @@
+# we set the path only if this is the 1st time this is executed
+# we use a var named after the directory (18 chars thereof) as the test
+
+set __foo = `echo $cwd | sed -e 's,[-/.:],_,g' -e 's,.*\(.\{18\}\),\1,'`
+set __bar =  \$\?$__foo
+set __baz = `eval echo "$__bar"`
+ 
+if ( $__baz == 0 ) then
+        set path = ($path $cwd/bin)
+ 
+endif
+ 
+set $__foo = Yes
+ 
+unset __foo
+unset __bar
+unset __baz

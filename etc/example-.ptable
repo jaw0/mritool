@@ -1,0 +1,32 @@
+
+#	Bimage::save,load  file conversion table
+#
+# ext,	save filter,				load filter
+# ===================================================================================
+
+Z,	compress -c,				uncompress -c
+gz, 	gzip -c, 				gunzip -c
+gif,	rasttopnm|ppmtogif,			giftoppm|pnmtorast -s
+jpg,	rasttopnm|cjpeg,			djpeg -p -c 256|pnmtorast -s
+tiff,	rasttopnm|pnmtotiff,			tifftopnm|pnmtorast -s
+icon,	rasttopnm|ppmtopgm|pgmtopbm|pbmtoicon,	icontopbm|pnmtorast -s
+xwd,	rasttopnm|pnmtoxwd,			xwdtopnm|pnmtorast -s
+gem,	rasttopnm|ppmtopgm|pgmtopbm|pbmtogem,	gemtopbm|pnmtorast -s
+mac,	nosuchfilter,				macptopbm|pnmtorast -s
+mgr,	nosuchfilter,				mgrtopbm|pnmtorast -s
+txt,	rasttopnm|ppmtopgm|pgmtopbm|pbmtoascii,	nosuchfilter
+ps,	ras2ps,					nosuchfilter
+segm,	nosuchfilter,				segmtoras
+iff,	rasttopnm|ppmtopgm|pgm2iff,		iff2pgm|pnmtorast -s
+
+xl,	|xloadimage stdin>/dev/null,		nosuchfilter
+# xv,	|mknod /tmp/.p$$ p;cat>/tmp/.p$$&;xv /tmp/.p$$;rm /tmp/.p$$,	nosuchfilter
+
+
+# these are called as:
+# save:		( command_from_above_table > filename ) 2>/dev/null
+# or with |:	( command_from_above_table ) 2>/dev/null
+
+# load:		( cat filename | command_from_above_table ) 2>/dev/null
+# or with |:	( command_from_above_table ) 2>/dev/null
+

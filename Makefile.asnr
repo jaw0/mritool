@@ -1,0 +1,220 @@
+
+
+    # Makefile for mritool version 2.1
+    # $Id: Makefile.asnr,v 1.1 1995/11/23 04:30:50 jaw Exp jaw $
+
+
+prefix = /usr/local
+
+    # srcdir is used by make
+srcdir = /home/gyrus/src/local/mritool-V2.1
+
+    # where the resultant binaries are installed
+bindir = $(prefix)/bin
+
+libdir = $(prefix)/lib
+
+    # where the lispcode will be
+lispdir = $(libdir)/mritool/$(version)/lisp
+
+    # where to place local lisp files
+locallispdir = $(libdir)/mritool/local-lisp
+
+    # where some executable helper files run by mritool will be
+    # and helpfiles, ...
+etcdir = $(libdir)/mritool/$(version)/etc
+
+    # the mritool lisp initialization code
+jlisp_init = $(lispdir)/init.jl
+
+    # where the mri scans are
+patdir = /data/mri/crd
+
+    # where the segmented scans will go
+segmdir = /data/mri/segm
+
+    # place to put shared libraries
+solibdir = /usr/local/lib
+
+    # file extention for backup files
+BAKEXT = .bak
+
+
+    # keep debugging info?
+DEBUG = -DDEBUG -g
+
+    # optimizations
+OPTIMIZE =
+
+# -Bstatic for ASNR, so we need not worry about getting all of the .so's packed up
+# empty normally
+STATIC = -Bstatic
+
+    # keep rcs info in the executable?
+RCS = -DRCSID
+
+    # what are the names of our compiler, lexer, and yaccer
+CCC  = CC-flags
+CPP  = cpp
+
+    # the name of our program
+TARGET = mri-jl
+    # the current version of mritool
+version = 2.7
+    # and jlisp
+jlversion = 1.05
+
+NUMBER = $(srcdir)/number
+
+    # flags to pass to lexer, yaccer, cpp, compiler, and linker
+LFLAGS = 
+YFLAGS = -v
+
+CPPFLAGS = 						\
+	-I./iplib/include				\
+	-I../iplib/include				\
+	-I../../iplib/include				\
+	-I. 						\
+	-I./include					\
+	-I./jlisp					\
+	-I../include					\
+	-I../jlisp					\
+	-I../../include					\
+	-I../../jlisp					\
+	-I/usr/openwin/include 	
+
+
+CCFLAGS =				\
+	$(DEBUG)			\
+	$(RCS)	 			\
+	$(OPTIMIZE)			\
+	-DMRITOOL			\
+	-DVERSION_MAJOR=$(version)	\
+	-DCNUMBER=`cat $(NUMBER)`	\
+	-DJLISP_INIT=$(jlisp_init)	\
+	-DSEARCHPATH=$(etcdir):$(libdir)
+
+LDFLAGS = $(STATIC)				\
+	-L/usr/openwin/lib 			\
+	-L./iplib/lib				\
+	-L../iplib/lib				\
+	-lMatrix				\
+	-lImages				\
+	-lxview 				\
+	-lolgx 					\
+	-lX11 					\
+	-lm 					\
+	-lcomplex
+
+
+LISPOBJS = lisp/init.jl lisp/mrirc.jl
+
+PASSALONG = 	CCFLAGS='$(CCFLAGS)' 	\
+		LDFLAGS='$(LDFLAGS)' 	\
+		CPPFLAGS='$(CPPFLAGS)' 	\
+		NUMBER='$(NUMBER)'	\
+		BAKEXT='$(BAKEXT)'
+
+all: Makefile segmtoras jl lispcode ipl  $(TARGET)
+lispcode: $(LISPOBJS)
+
+
+$(TARGET): _target include/defproto.h
+	cd src; $(MAKE) $(TARGET) $(PASSALONG)
+	./bin/if-changed cp src/$(TARGET) $(TARGET)
+	@echo ""
+	@echo =\> `cat $(NUMBER)` \<=
+	@ls -l $(TARGET)
+	@size $(TARGET)
+
+segmtoras: ipl
+	cd src; $(MAKE) segmtoras $(PASSALONG)
+	./bin/if-changed cp src/segmtoras segmtoras
+
+ipl:
+	cd iplib/lib ; make install LIBDIR=$(solibdir)
+
+xxjl: _xxjl
+_xxjl:
+	cd jlisp; $(MAKE) jl INIT_FILE="$(jlisp_init)" version=$(jlversion) OPTIMIZE="$(OPTIMIZE)" \
+		DEBUG="$(DEBUG)" CC=$(CC) CPP=$(CPP)
+	./bin/if-changed cp jlisp/jl xxjl
+
+jl: xxjl $(LISPOBJS)
+	@echo "Dumping..."
+	./xxjl -norc -e '(progn (unexec "jl" "xxjl") (quit))' 
+	
+lisp/init.jl: lisp/init.cf.jl configure.sed
+	sed -f configure.sed lisp/init.cf.jl > lisp/init.jl
+
+lisp/mrirc.jl: lisp/mrirc.cf.jl configure.sed
+	sed -f configure.sed lisp/mrirc.cf.jl > lisp/mrirc.jl
+
+jlisp.a: _jlispa
+_jlispa:
+	cd jlisp; $(MAKE) jlisp.a STANDALONE=-DNOT_STAND_ALONE version=$(jlversion)
+	./bin/if-changed cp jlisp/jlisp.a jlisp.a
+
+include/defproto.h: jlisp/defproto.h
+	./bin/if-changed cp jlisp/defproto.h include/defproto.h
+
+jlisp/defproto.h:
+	cd jlisp; $(MAKE) defproto.h
+
+configure.sed: Makefile
+	-mv configure.sed configure.sed$(BAKEXT)
+	@echo s@%SRCDIR%@$(srcdir)@g   >> configure.sed
+	@echo s@%PREFIX%@$(prefix)@g   >> configure.sed
+	@echo s@%BINDIR%@$(bindir)@g   >> configure.sed
+	@echo s@%LIBDIR%@$(libdir)@g   >> configure.sed
+	@echo s@%ETCDIR%@$(etcdir)@g   >> configure.sed
+	@echo s@%LISPDIR%@$(lispdir)@g >> configure.sed
+	@echo s@%LOCALLISP%@$(locallispdir)@g >> configure.sed
+	@echo s@%PATDIR%@$(patdir)@g   >> configure.sed
+	@echo s@%SEGMDIR%@$(segmdir)@g >> configure.sed
+
+install: all
+	mkdir -p $(bindir) $(libdir) $(lispdir) $etcdir)
+	$(INSTALL) -m 555  $(TARGET) $(bindir)/$(TARGET)
+	$(INSTALL) -m 555  segmtoras $(etcdir)/segmtoras
+	$(INSTALL) -m 555  jl        $(bindir)/jl
+	cp $(lispsrc)/*.jl $(lispdir)
+
+clean:
+	-rm -f $(LISPCODE) $(OBSLS) segmtoras jl $(TARGET) core a.out #*# include/cli-defvar.list include/cli-defun.list include/defproto.h
+	cd jlisp;  $(MAKE) clean
+	cd src; $(MAKE) clean
+	cd iplib/lib; $(MAKE) clean
+
+depends:
+	@echo making depends...
+	cd src; $(MAKE) depends $(PASSALONG)
+	cd jlisp; $(MAKE) depends
+
+help:
+	./mri-jl -norc -nw -e "(progn (load \"all-syms\")(mk-help-txt \"/tmp/mri-help\")(quit))"
+	sort /tmp/mri-help | grep -v "internal" | grep -v "Not Documented" \
+		| grep -v "Autoloaded"| sed 's/\/\
+	                      /g' > /tmp/mri-help.s
+	cat etc/help.head /tmp/mri-help.s > etc/help.txt
+
+Makefile: stamp
+	@echo making Makefile...
+	@cp Makefile Makefile$(BAKEXT)
+	@sed -n '1,/#END_[oO]F_MAKE/p' Makefile\
+		| sed "s%^srcdir =.*\$$%srcdir = `pwd`%"  >Make.new
+	@cat Make.new > Makefile
+	@rm -f Make.new
+stamp:
+	touch stamp
+
+_target:
+
+dist:
+	./jl -f cep-dist
+tar:
+	cd ..; tar cf - ur-cep | gzip -f --best -c > ur-cep.tar.gz
+
+
+# DO NOT remove following line!
+#END_OF_MAKE

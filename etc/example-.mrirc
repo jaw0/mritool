@@ -1,0 +1,39 @@
+;;;; config file for mritool program
+
+;;; 	project config info
+
+(sets! mri:across    2)
+(sets! mri:buttons                                        ; the button labels
+  '("R Temporal"        "L Temporal"
+    "R White"           "L White"
+    "R Grey"            "L Grey"
+    "R Amygdala"        "L Amygdala"
+    "R Hippocampus"     "L Hippocampus"
+    "R Parahippocampus" "L Parahippocampus"
+    "R Horn"            "L Horn"
+    "R Brain"           "L Brain"))
+
+;;;    locate some important files
+(sets! mri:patients  "=M/patient.list")
+
+;;; various parameters
+(sets! mri:line-width   1)
+(sets! mri:erasor       16)
+(sets! mri:cursor-size  0)
+
+(sets! mri:elastic      20)                               ; default snake elasticity
+(sets! mri:attractive   15)                               ; default snake atractiveness
+(sets! mri:stiffness    100)                              ; default snake stiffness     
+(sets! mri:3dconstraint 0)                                ; default snake 3D term
+(sets! mri:similarity   5)                                ; default snake similararity
+(sets! mri:maxiter      100)                              ; max # of iters when minimizing snake
+(sets! mri:percent      90)                               ; max # of iters when minimizing snake
+
+(sets! mri:nlev         6)                                ; defualt number of segm levels
+
+(sets! mri:window       230)                              ; initial window
+(sets! mri:level        -15)                              ; initial level
+
+ ;;(sets! mri:segmdir   (mriname "=w/mri/segm"))
+;;(sets! mri:patdir    (mriname "=w/mri/crdX"))
+

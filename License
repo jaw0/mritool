@@ -1,0 +1,58 @@
+
+This software is Copyright (c) 1992,1993,1994,1995 Jeff Weisberg
+	University of Rochester
+	  Dept. of Electrical Engineering
+	  Dept. of Neurology, Comprehensive Epilepsy Program
+
+It was developed by:
+	Jeff Weisberg	(weisberg@gyrus.neurology.rochester.edu)
+	Mike Berg	(berg@gyrus.neurology.rochester.edu)
+All correspondance should be directed to Jeff Weisberg or Mike Berg at
+the above email addresses or by US postal mail to: 
+	Michel J. Berg, M.D.
+	Box 673; Dept. of Neurology
+	University of Rochester Medical Center
+	601 Elmwood Avenue
+	Rochester, NY 14642-8673
+
+
+Permission is granted to use this software under the following
+conditions:
+
+-       This is a beta release for personal research use only.
+        It is poorly documented, and not overly user friendly.
+        The authors will be happy to provide upgrades if you keep 
+        in touch by reporting bugs and modifications (see below).
+
+-       This license covers the original software, as well as
+        modified or derived works.
+
+-       You are not permitted to distribute any portion of
+        this software without the express written permission of 
+        the authors. Prior to using this software you need to
+        sign a non-disclosure agreement.
+
+-       You may modify this software as you see fit, for personal
+        use, but may not distribute the modified version.
+ 
+-       This software is not to be used, for any purpose which
+        may be considered illegal, immoral, or unethical.
+ 
+-       This software is provided as is and without warranty.
+
+-       This software has not been approved for patient care.
+        Using this software for patient care is to be done completely
+        at the users risk.  The authors disclaim any liability for
+        the medical use of this software.  Use of this software should
+        be for research purposes only.
+ 
+
+The authors encourage you to use and modify this software for your
+personal needs. We request that modifications to the software, and
+any bugs noticed, be provided to the authors for incorportation
+into future versions of the  software.  We are also open to
+suggestions for improvements.
+
+Thank you for your interest in mritool and for abiding by the terms
+of this license.
+ 

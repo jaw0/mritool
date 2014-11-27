@@ -1,0 +1,67 @@
+%W%
+   Pstream is a set of C++ classes (pipebuf, ipstream, opstream, pstream)
+for doing I/O to a pipe connected to another processes (under Unix).  It allows
+you to do this in the same way that you do I/O to files using
+fstream in C++.  Pstream allows data to be both read from and
+written to the pipe (unlike popen() in C which allows only one or
+the other).  In addition to transferring data to the child process,
+pstream can tell you the process id of the child, and the status
+of the child.  Pstream gives EOF on output when the child process
+dies, and EOF on input when there is no more data left in the pipe and
+the child has died.
+   Manpages are stored in the "Docs" directory.  To build pstream,
+edit the "CC" and "CFLAGS" lines at the top of the makefile (the
+makefile contains instructions on how to set things -- note that
+the CFLAGS settings OTHER THAN "OLDCC" are only important for 
+building "pipebuf.o" and are not needed when you write your own programs 
+which use pstream).  Then, do "make" to build "pipebuf.o".  You will need 
+to link "pipebuf.o" to your code which uses pstream, and you will also need to 
+include the "pstream.h" header file.
+   The "Test" directory contains various programs which exercise
+pstream to make sure it is working OK (named "tp1" through "tp9").
+These programs tell you what output you should expect when you run
+them.  Make sure you modify the "CC" line in "Test/makefile" before
+compiling the test programs.  Note that the test programs were NOT
+designed to be "nice examples" of how to use pstream - they are only
+for diagnostics.
+
+
+Notes on compilers & systems:
+-----------------------------
+I have compiled this on IBM RS6000's using xlC with no problems.  Use:
+  CC=xlC
+  CFLAGS=-O
+
+On Sun SparcStations, I have used various versions of cfront without
+problems.  Under cfront 3.0.1, use:
+  CC=CC
+  CFLAGS=-O -DWAIT4 -DWAIT4_INTPTR
+While under cfront 2.00 (saber 1.0), use:
+  CC=CC
+  CFLAGS=-O -DWAIT4 -DOLDCC
+
+On AT&T 386, SysVR4, cfront 2.1.0 it works OK but some of the test programs are
+sometimes slow because these machines don't have usleep().  Use:
+  CC=CC
+  CFLAGS=-O -DWAITPID -DNOUSLEEP -DOLDCC
+
+Regarding g++ -- I've had problems getting pstream to work with this.
+Under some versions it works (although not all of the test programs will
+compile) while on other versions you just can't build "pipebuf.o".
+
+Comments:
+---------
+If your computer does not support waitpid()
+or wait4(), the 'stat' value will not get
+set when the child exits, so you cannot
+tell what its exit value was.  If your computer
+does support one of those functions, be sure
+to set CFLAGS in the makefile appropriately
+(see documentation in the makefile).
+
+The setb() function which is a protected member
+of streambuf, frees an array of characters
+with 'delete' instead of 'delete[]'.  According to
+Stoustrup & Ellis, this is undefined.  However, it
+is beyond my control...
+

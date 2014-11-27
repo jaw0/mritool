@@ -1,0 +1,21 @@
+
+# mritool Version 1 config file
+
+buttons:	17		# total number of buttons
+across:		2		# number of buttons across each row
+ 
+labels:	R_Temporal, L_Temporal, R_White, L_White, R_Grey, L_Grey,	# labels for the buttons
+labels:	R_Amygdala, L_Amygdala, R_Hippocampus, L_Hippocampus,		# there must be the same number
+labels:	R_Parahippo, L_Parahippo, R_Horn, L_Horn, R_Brain, L_Brain,	# as specified in the 
+labels:	Whole_Brain							# buttons: line
+ 
+patdir:		/data/mri/crd						# where the mri scans are located
+savedir:	~/data/save						# where to save recorded data
+savename:	Datafile						# the name of the data file
+statefile:	.mri_state						# the name of the state file
+patients:	/home/gyrus/src/local/mritool-V1.0/patient.list		# list of patients
+helpfile:	/home/gyrus/src/local/mritool-V1.0/help.ps		# the help file
+
+window:		230
+level:		-15
+

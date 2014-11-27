@@ -1,0 +1,16 @@
+
+mritool is a program for playing with mri scans
+it contains a builtin lisp interpreter, extensive
+image processing facilities, it can be run in both
+GUI mode or command-line mode.
+
+to build, you will require the Xview libraries,
+if you are using a Sun you should already have
+these, otherwise they are available for free from
+the usual X ftp sites.
+
+you will need to modify the following files:
+	Makefile
+	include/conf.h
+	jlisp/jlconf.h
+

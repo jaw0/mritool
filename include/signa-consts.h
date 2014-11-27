@@ -1,0 +1,32 @@
+
+#define SYHDR_START	(0*256)
+#define STHDR_START	(12*256)
+#define SEHDR_START	(16*256)
+#define IMHDR_START	(20*256)
+#define IDATA_START	(56*256)
+
+#define NAME_START	(54*2)
+#define SEX		(80*2)
+#define HOSP		(223*2)
+#define AGE		(78*2)
+#define WEIGHT		(81*2)
+#define SERNUM		(31*2)
+#define SERDESCR	(52*2)
+#define SERDATE		(37*2)
+#define SERPLANE	(139*2)
+#define SERPROTO	(213*2)
+#define SERFOV		(151*2)
+
+#define IMNUM		(44*2)
+#define STNUM		(32*2)
+#define STDATE		(39*2)
+#define STDESCR		(131*2)
+#define STPID		(70*2)
+#define IMWID		(143*2)
+#define IMLEV		(144*2)
+#define IMXPIXDIM	(137*2)
+#define IMYPIXDIM	(138*2)
+#define IMTHICK		(77*2)
+#define IMPIX		(139*2)
+
+

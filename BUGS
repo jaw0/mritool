@@ -1,0 +1,5 @@
+
+bignum print does not work under gcc, ok with sun CC
+
+jlisp k-arch dependancies (4c/4m) reason unknown...
+

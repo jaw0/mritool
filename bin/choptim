@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# change optimization of files
+
+
+opt=$1
+shift
+
+while [ $# -gt 0 ]; do
+	file=$1
+	shift
+	if grep -s "Optimization" $file; then
+		echo Changing $file to $opt
+		(
+		  echo 1,\$s%\\\(// Optimization:\\\).\*\$%\\1 $opt%
+		  echo w
+		  echo q
+		) | ed -s $file
+	else
+		echo Setting $file to $opt
+		(
+		  echo 0a
+		  echo  
+		  echo // Optimization: $opt
+		  echo .
+		  echo w
+		  echo q
+		) | ed -s $file
+	fi
+done
+
+

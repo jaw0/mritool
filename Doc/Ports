@@ -1,0 +1,41 @@
+
+Ports in JLisp
+==============
+
+ports are the object we use for i/o
+
+we can open a file:
+
+	(open:read "filename")
+	(open:write "foo.bar")
+	(open:read/write "Glark.doc")
+	(open:append "work.log")
+
+or a pipe:
+
+	(open:read "| finger bob@host")
+	(open:write "| mail bob@host")
+
+or a string:
+
+	(open:string "A string to be read and written to")
+
+i/o operations on a port:
+
+
+	(read [port])
+	(display [port])
+	(write [port])		all read/write lisp forms
+
+	(getc port)
+	(putc port char)
+	(ungetc port char)	character at a time 
+
+	(flush port)
+	(seek port offset)
+	(tell port)		administrative tasks to ports
+
+
+ports need not be expicitly closed (can't be actually)
+they will be closed at exit or if GCed
+

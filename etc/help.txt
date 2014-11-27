@@ -1,0 +1,781 @@
+ 
+               Mri Tool Version +2.7
+                 Online Help File
+=========================================================
+ 
+Lisp function and variable reference
+=========================================================
+
+!=                    (!= a b) are they different?
+                      [see also: = < > <= >=]
+%                     (% n1 n2) n1 modulo n2
+%initialize-signal-handlers%  initilializes the signal handlers, is called at startup by the c-code
+%input-radix%         %input-radix% the radix used for numbers on input
+%output-radix%        %output-radix% the radix used for numbers on output
+%parse-cmd-line%      (parse-cmd-line) parse the command line args
+&                     (& n m) bitwise and
+&optional             &optional signal optional arguments
+&rest                 &rest signal the rest of the arguments
+*                     (* n ...) multiply numbers
+*                     (* n m) multiplication
+*argv*                *argv* vector of command line arguments
+*class:pred-suffix*   *class:pred-suffix* prefered suffix for predicate function, typically -p or ?
+*error-object*        the object which caused the error
+*features*            *features* list of features supported
+*stderr_port*         standard error port
+*stdin_port*          standard input port
+*stdout_port*         standard output port
++                     (+ n ...) add numbers
++                     (+ n m) addition
+++                    (++ i) increment a number
+-                     (- n ...) subtract numbers
+-                     (- n m) subtraction
+--                    (-- i) decrement a number
+->bignum              (->bignum n) convert to a bignum
+->double              (->double n) convert to double precision float
+->exact               (->exact n) convert to integral form
+->float               (->float n) convert to single precision float
+->int                 (->int n) convert to integer
+.box_size             .box_size  number of cells to allocate at a time from the system
+.debug-on-next-call   .debug-on-next-call if not #f the debugger will be entered prior to the next call
+.gc_stats             .gc_stats  vector desribing the results of the last gc
+.gc_thresh            .gc_thresh  threshhold number of cells after which we do a gc
+.getvalue             .getvalue  getvalue interloper function
+.lineno               .lineno the current line number
+.version              .version what version are we using
+.versno               .versno the version number
+/                     (/ n ...) divide numbers
+/                     (/ n m) division
+1+                    (1+ i) return (+ 1 i)
+1-                    (1- i) return (+ -1 i)
+2D->3D                (2D->3D img zdim) returns surface as a solid
+3D->2D                (3D->2D solid) returns pair of range images
+<                     (< n1, n2) Is n1 less than n2?
+<<                    (<< n m) shift left)
+<=                    (<= n1 n2) Is n1 less or equal than n2?
+=                     (= n1 n2) Are two numbers equal?
+>                     (> n1 n2) Is n1 greater than n2?
+>=                    (>= n1 n2) Is n1 greater or equal to n2?
+>>                    (>> n m) shift right)
+SIGABRT               abort()
+SIGALRM               alarm clock
+SIGBUS                bus error
+SIGCHLD               to parent on child stop or exit
+SIGCONT               continue a stopped process
+SIGEMT                EMT instruction
+SIGFPE                floating point exception
+SIGHUP                hangup
+SIGILL                illegal instruction (not reset when caught)
+SIGINFO               information request
+SIGINT                interrupt
+SIGIO                 input/output possible signal
+SIGKILL               kill (cannot be caught or ignored)
+SIGPIPE               write on a pipe with no one to read it
+SIGPROF               profiling time alarm
+SIGQUIT               quit
+SIGSEGV               segmentation violation
+SIGSTOP               sendable stop signal not from tty
+SIGSYS                bad argument to system call
+SIGTERM               software termination signal from kill
+SIGTRAP               trace trap (not reset when caught)
+SIGTSTP               stop signal from tty
+SIGTTIN               to readers pgrp upon background tty read
+SIGTTOU               like TTIN for output if (tp->t_local&LTOSTOP)
+SIGURG                urgent condition on IO channel
+SIGUSR1               user defined signal 1
+SIGUSR2               user defined signal 2
+SIGVTALRM             virtual time alarm
+SIGWINCH              window size changes
+SIGXCPU               exceeded CPU time limit
+SIGXFSZ               exceeded file size limit
+SIG_DFL               default signal handler
+SIG_IGN               ignore signal
+^                     (^ n m) bitwise xor
+_quit                 (_quit [val]) quit using _exit
+abs                   take the absolute value
+acons                 (acons key value alist) add key/value pair to an alist
+acos                  take the arccos
+acosh                 take the inverse hyperbolic cosine
+add-hook              (add-hook hooks function) add the function to the hook
+add-method            (add-method classname methodname attributes... func) add a method to a class
+adjust-wl             (adjust-wl window level) adjust the window and level
+alarm                 (alarm time) scedule a SIGALARM time seconds from now
+analyze               (analyze from to item) analyze structures
+and                   (and value...) boolean and
+append                (append list...) concatenate lists
+append!               (append! list...) destructively concatenate lists
+apply                 (apply func args... arglist) apply func to args arglist
+appropos              (appropos keyword) find a function dealing with keyword
+asin                  take the arcsin
+asinh                 take the inverse hyperbolic sin
+assoc                 (assoc elt alist) is item the car of a member (equal) of alist
+assq                  (assq elt alist) is item the car of a member (eq) of alist
+assv                  (assv elt alist) is item the car of a member (eqv) of alist
+atan                  take the arctan
+atan2                 (atan2 n1 n2)  the arctan of n2/n1
+atanh                 take the inverse hyperbolic tangent
+atomp                 An atom?
+autoload              (autoload function file [docstr]) declare function to be autoloaded from file
+                      the file will be automagically loaded in the event that the function is called
+                      if func is already defined will do nothing
+backquote             `expr mostly quote expr
+backtrace             (backtrace) return a list of the lisp calling frames
+                      of the form: (fncname fncdefn arglist dbgflag)
+been-dumped?          (been-dumped?) is this a dumped version?
+bignump               A bignum?
+booleanp              (booleanp obj) A boolean?
+boundp                a bound symbol?
+caar                  (caar x) ...
+cadddr                (cadddr x) ...
+caddr                 (caddr x) ...
+cadr                  (cadr x) ...
+call                  (call thunk)  call the specified thunk
+cancel-debug-on-entry  (cancel-debug-on-entry function) no longer call debugger function when called
+car                   (car cell) return the CAR of a cell
+case                  (case key ((obj...) body...)...) evaluates key, and looks for a matching (eqv)
+                      obj, if a match is found, the matching body is evaluted and the result returned
+                      if no match is found the result is unspecified, #t will match anything (else)
+cat-file              (cat-file file) cat a file to stdout
+catch                 (catch tag body...) setup a catch frame
+                      the return value will be the value specified by the throw
+                      if the throw did not specify a value, it will default to #t
+                      or the result of body if no throw was caught
+                      [see also: throw unwind-protect]
+cbrt                  take the cube root
+ccodep                Builtin C code?
+cdar                  (cdar x) ...
+cdddr                 (cdddr x) ...
+cddr                  (cddr x) ...
+cdr                   (cdr cell) return the CDR of a cell
+ceil                  take the ceiling
+char->int             (char->int c) convert char to int
+char-downcase         (char-upcase char) return upper case version of char
+char-upcase           (char-upcase char) return upper case version of char
+charp                 A charcacter?
+chdir                 (chdir dirname) change the current directory
+chmod                 (chmod filename mode) change file attributes
+chown                 (chown filename uid gid) chown file owner uid and gid
+close                 (close port) closes the port
+cond                  (cond (test body)...) evaluate each test until one is not #f
+                      then the body is evaluated and the result returnedor #f is returned if none matched
+cons                  (cons obj obj) Create a cons cell
+cons2                 (cons2 a b c) add a and b to front of list c
+consp                 Is this a cons cell
+copy-deep             (copy-deep list) return a list that is a copy of the original
+                      all sublists are recursively copied
+copy-list             (copy-list list) return a copy of the list
+copyright             (copyright) display the copyrigt notice
+cos                   take the cosine
+cosh                  take the hyperbolic cosine
+current-image         (current-image) what is the current slice number?
+current-level         (current-level) return the current setting of the level
+current-time          (current-time) return seconds since 00:00:00 GMT, Jan. 1 1970
+                      returns a list (hi lo miscrosecs)
+current-time-string   (current-time-string) return a string representing the current time
+current-ui            (current-ui)  return the current ui
+current-window        (current-window) return the current setting of the window
+debug-flag            (debug-flag section field) return the current flag
+debug-on-entry        (debug-on-entry function) enter the debugger when function is called
+debug-on-error        should we enter the debugger on error?
+debugger-called-from  (debugger-called-from) who called the debugger?
+defclass              (defclass name (elems...) (meths...) attributes...) define a class
+                      name  : name | (name base...)
+                      elems : elemnt-name | (element-name attributes...)
+                      meths : (method-name defn attributes...)
+define                (define symbol value [docstring]) or (define symbol [docstring] value)
+                      Define a variable in the current scope with an optional doc-string
+definedp              defined?
+defmac                (defmac name args [docstr] body...) Define a macro
+defun                 (defun name args [docstr] body...) Define a Function
+defvar                (defvar var initvalue [docstring]) defines var as initvalue only if var is undefined
+delete!               (delete! item list) destructively delete item (equal) from list
+delq!                 (delq! item list) destructively delete item (eq) from list
+delv!                 (delv! item list) destructively delete item (eqv) from list
+die                   (die [message]) print out the message and exit
+                      [see also: quit _quit]
+disp-l-nice           pretty print the list
+display               (display obj [port]) Display the object
+do                    (do (specs...) (endtest [result]) body...) general iterative loop
+                      specs: (var [init [step]]) | var, vars are initialized to init
+                      the body and steps are repeatedly evaluated until endtest is true
+                      result is then evaluted and returned
+do*                   (do* (specs...) (endtest [result]) body...) general iterative loop
+                      specs: (var [init [step]]) | var, vars are initialized to init
+                      the body and steps are repeatedly evaluated until endtest is true
+                      result is then evaluted and returned
+docstr                (docstr symbol) retreive the documentation from a symbol
+dolist                (dolist (var list [result]) body...) do body for each item of the list
+                      binding the item to var, returns the result of evaling result at completion
+done-thinking         (done-thinking [ui]) ponder no more
+dotimes               (dotimes (var count [result]) body...) do body count times,
+                      iterating var from 0 to count-1
+                      the value of evaling result at the completion of iterating, is returned
+doublep               A double?
+draw-line             (draw-line xi yi xf yf s [ui] [img]) ...
+draw-point            (draw-point x y s [ui] [img]) ...
+envlookup             (envlookup symbol [env]) Lookup symbol in the enviornment
+eof-object            (eof-object)  return the #<EOF> object
+eq                    (eq a b) Are these the same?
+equal                 (equal a b) Are these equivalent?
+eqv                   (eqv a b) Are these equivalent?
+erase-area            (erase-area x y [ui] [img]) ...
+error                 (error fnc obj descr) signal an error
+eval                  (eval form) evaluate form
+exec                  (exec file arg1 arg2...) exec a program
+exp                   (exp  d [base]) take e [or a specified base] raised to the d power
+expand-macro          (expand-macro macro args...) Expand a macro
+expm1                 find e**x - 1
+falsep                false?
+featurep              (featurep feature) is feature available?
+floatp                A float?
+floor                 take the floor
+flush                 (flush port) flush the buffer associated with port
+for-each              (for-each fnc list) Apply function to all elems of list
+fork                  (fork) fork the process
+fractal-analyze       (fractal-analyze solid maxr) calculate localized fractal dimension
+funcall               (funcall func args...) call func with args
+functionp             A function?
+gc                    (gc) Garbage collect
+gcd                   (gcd a b) find the greatest common denominator
+get-body-list         (get-body-l function|macro) return the body
+                      [see also: get-param-list]
+get-contour           (get-contour [ui]) return the contour
+get-contour-v         (get-contour-v [ui]) return the contour
+get-fimg              (get-fimg [ui]) return the fimg
+get-param-list        (get-param-list function|macro) return the parameter declaration list
+                      [see also: get-body-list]
+get-props             (get-props symbol) Get the plist of a symbol
+get-segm              (get-segm [ui]) return the segm
+get-view              (get-view [ui]) return the view
+get-view-raw          (get-view-raw [ui]) return the view
+getc                  (getc port) Read a character from the specified port
+getdirents            (getdirents dirname) returns a list of entries in the speciified directory
+                      of the form: (name inode)
+getegid               (getegid) return the effective group id
+getenv                (getenv string) get value from the enviornment
+geteuid               (geteuid) return the effective user id
+getgid                (getgid) return the real group id
+getgrgid              (getgrgid gid) get group info by gid
+getgrnam              (getgrnam name) get group info by name
+getgroups             (getgroups) return a vector of groups in
+gethostbyaddr         (gethostbyaddr addr) return hostname
+gethostbyname         (gethostbyname name) return (hostname . ip-address)
+gethostname           (gethostname) return the hostname of the system
+getline               (getline [port]) read in a line [from port] will return () on eof
+getlogin              (getlogin ) return the login name
+getpeername           (getpeername [port]) return the remote address attached to this socket
+getpid                (getpid) return the process id
+getppid               (getppid) return the process' parent id
+getpwnam              (getpwnam name) get pw file info by name
+getpwuid              (getpwuid uid) get pw file info by uid
+getrusage             (getrusage) return a vector filled with usage info
+                      #(usertime systime maxrss ixrss idrss isrss minor-faults major-faults
+                        n-swaps in-blocks out-blocks msgs-sent msgs-rcvd n-signals n-vol-cntxt
+                        n-invol-cntx data-size text-size stack-size-approx)[see also: the getrusage(2) man page]
+getsockname           (getsockname [port]) return the local address attached to this socket
+getuid                (getuid) return the real user id
+getwd                 (getwd) return the current working directory
+graph                 (graph vector) graph the vector
+hashq                 (hashq object) returns an integer hash value
+                      such that if 2 objects are eq they will have the same hash value
+hashstats             (hashstats) returns a some statistical info
+hashv                 (hashv object) returns an integer hash value
+                      such that if 2 objects are eqv they will have the same hash value
+help                  (help item) display the documentation for an item
+if                    (if test then else...) conditional form
+image-info            (image-info) return useful image info
+image-list            (image-list) return list of image
+imagep                (imagep obj) is this an image?
+img:&=                (img:&= img IMAGE) pixel by pixel and
+img:*=                (img:*= img IMAGE) pixel by pixel product
+img:+=                (img:+= img IMAGE) pixel by pixel sum
+img:-=                (img:-= img IMAGE) pixel by pixel difference
+img:/=                (img:/= img IMAGE) pixel by pixel division
+img:<=                (img:<= img NUMBER) what pixels are less/equal than this value
+img:==                (img:== img NUMBER) what pixels are at this value
+img:>=                (img:>= img NUMBER) what pixels are more/equal than this value
+img:^=                (img:^= img IMAGE) pixel by pixel or
+img:area              (img:area img) area of binary image
+img:blu               (img:blu img) extract the blue channel
+img:blur              (img:blur img NUMBER NUMBER) gaussian blur
+img:blur_nl           (img:blur_nl img NUMBER NUMBER) a non-linear blurlike operation
+img:cannongray        (img:cannongray img) put colors in cannonical order
+img:circle            (img:circle img Point NUMBER [NUMBER=255.000000]) draw a circle
+img:clone             (img:clone img) return a new image of the same type
+img:cmap:put          (img:cmap:put img n #(r g b))
+img:cmap:value        (img:cmap:value img n)
+img:cmp_cnts          (img:cmp_cnts img IMAGE) compare contours
+img:convolve          (img:convolve img IMAGE) convolve images
+img:countcolors       (img:countcolors img) reduce size of cmap
+img:cput              (img:cput img NUMBER NUMBER complex) set complex pixel value
+img:cpy               (img:cpy dst-img src-img | src-image) copy
+img:cut               (img:cut img Point Point) cut out a piece of image
+img:cvalue            (img:cvalue img NUMBER NUMBER) get complex pixel value
+img:dxform            (img:dxform img) distance xform
+img:edge              (img:edge img NUMBER) sobel edge map
+img:edgemap           (img:edgemap img) edgemap
+img:emboss            (img:emboss img) perform embossing effect
+img:equalize          (img:equalize img) histogram equalize
+img:fbordercolor      (img:fbordercolor img) put colors in good order for framebuffer
+img:fft               (img:fft img [NUMBER=-1.000000] [NUMBER=0.000000]) perform FFT
+img:fill              (img:fill img Point [NUMBER=255.000000]) fill a region
+img:fractal           (img:fractal img NUMBER) create a fractal landscape of specified fractal dimension
+img:gamma             (img:gamma img NUMBER) change gamma
+img:get               (img:get img param) get data about image
+img:grayramp          (img:grayramp img) set cmap to a gray scale
+img:grn               (img:grn img) extract the green channel
+img:height            (img:height img) how high?
+img:histogram         (img:histogram img) returns vector histogram
+img:hough             (img:hough img [NUMBER=0.000000]) do a hough xform
+img:ifft              (img:ifft img [NUMBER=1.000000] [NUMBER=0.000000]) perform IFFT
+img:iii               (img:iii img) extract the I channel
+img:imag              (img:imag img) return the imaginary portion of a complex image
+img:interp            (img:interp img NUMBER NUMBER) interpolate
+img:invert            (img:invert img) invert image
+img:kmeans            (img:kmeans img k maxiter) perform k-means segmentation
+img:lapl              (img:lapl img NUMBER) laplacian filter
+img:levels            (img:levels img) return # of levels in image
+img:line              (img:line img Point Point [NUMBER=255.000000]) draw a line
+img:load              (img:load img STRING) load image
+img:magnitude         (img:magnitude img) return the magnitude of a complex image
+img:makeC             (img:makeC width height) create a complex image
+img:makeF             (img:makeF width height) create an floating point image
+img:makeU             (img:makeU width height) create an 8bit image
+img:maxval            (img:maxval img) the maximum value
+img:mean              (img:mean img) return mean
+img:median            (img:median img NUMBER) median filter
+img:minval            (img:minval img) the minimum value
+img:ncolors           (img:ncolors img) how many colors?
+img:ncput             (img:ncput img NUMBER NUMBER complex) set complex pixel value
+img:ncvalue           (img:ncvalue img NUMBER NUMBER) get complex pixel value
+img:nput              (img:nput img NUMBER NUMBER NUMBER) set pixel value
+img:nvalue            (img:nvalue img NUMBER NUMBER) get pixel value
+img:ordercolors       (img:ordercolors img) arrange colors in Y order
+img:overlay           (img:overlay img IMAGE Point) overlay with another image
+img:phase             (img:phase img) return the phase of a complex image
+img:pretty            (img:pretty img NUMBER [NUMBER=10.000000]) make line thin and nice
+img:print             (img:print img) image print method
+img:ps                (img:ps img file width height border extras) convert img to postscript
+img:punch             (img:punch img NUMBER NUMBER [NUMBER=0.000000] [NUMBER=256.000000]) punch
+img:put               (img:put img NUMBER NUMBER NUMBER) set pixel value
+img:qqq               (img:qqq img) extract the Q channel
+img:quant             (img:quant img IMAGE IMAGE [NUMBER=255.000000]) color quantize
+img:quantize          (img:quantize img [NUMBER=0.000000]) quantize image
+img:real              (img:real img) return the real portion of a complex image
+img:red               (img:red img) extract the red channel
+img:resize            (img:resize img) gets memory
+img:resizecolors      (img:resizecolors img NUMBER) change cmap size
+img:rotate            (img:rotate img NUMBER) rotate degrees
+img:save              (img:save img STRING) save image
+img:segment           (img:segment img k a mk mi [mw])
+img:stereo            (img:stereo img) random-dot stereogram-ify
+img:thresh            (img:thresh img NUMBER) threshhold
+img:value             (img:value img NUMBER NUMBER) get pixel value
+img:variance          (img:variance img) return variance
+img:width             (img:width img) how wide?
+img:wipe              (img:wipe img NUMBER) set all pixels to a value
+img:xl_displ          (img:xl_displ img) display image with xloadimage
+img:yam->cnt          (img:yam->cnt img l1 l2) convert yamakahed image int contour
+img:yyy               (img:yyy img) extract the Y channel
+img:zoom              (img:zoom img NUMBER) change size, pixel replcates
+img:|=                (img:|= img IMAGE) pixel by pixel difference
+inputportp            A readable ioport?
+install-cmap          (install-cmap img [ui])
+install-signal-handler  (install-signal-handler signo thunk) install a signal handler
+                      for the specified signal number, thunk is a procedure to be called
+                      which must not require any params, or it may be () to ignore the
+                      signal, or #t to restore the default system handler
+int->char             (int->char i) convert int to char
+inter                 (inter symbol [symboltable]) Inter a symbol in the symbol table
+intp                  An integer?
+ipc:accept            (ipc:accept socket) accept a connection on a socket
+                       returns (usable-socket . from-address)
+                       [see also: ipc:open ipc:bind ipc:connect ipc:listen]
+ipc:bind              (ipc:bind socket adr [port]) bind a name to a socket
+                       address is the hostname (af_inet) or pathname (af_unix)
+                       port is the tcp port (af_inet)
+                       [see also: ipc:open ipc:connect ipc:listen ipc:accept]
+ipc:connect           (ipc:connect socket address [port]) establish a connection to a socket
+                       address is the hostname (af_inet) or pathname (af_unix)
+                       port is the tcp port (af_inet)
+                       [see also: ipc:open ipc:bind ipc:listen ipc:accept]
+ipc:listen            (ipc:listen socket n) listen to a socket [see also: ipc:open ipc:connect ipc:bind ipc:accept]
+ipc:open              (ipc:open domain type) create an interprocess communication socket
+                       domain is AF_UNIX or AF_INET; type is SOCK_STREAM or SOCK_DGRAM
+                       [see also: ipc:bind ipc:connect ipc:listen ipc:accept]
+ipc:recv              (ipc:recv s) receive a datagram, returns (string . from-address)
+ipc:send              
+ipc:setopt            
+isatty                (isatty port) Is this port a tty?
+keyhole               (keyhole expansion keywidth keyheight) generate a keyhole head
+kill                  (kill proc [signal]) send a process a signal
+lambda                (lambda arglist body...) Lambda the great
+lcm                   (lcm a b) find the least common multiple
+length                (length obj) How long is this thing?
+let                   (let ( {(sym value)|sym}...) body...) The let form
+let*                  (let* ( {(sym value)|sym}...) body...) The let* form
+license               (license) display the software license
+link                  (link from-file to-file) hard link a file
+                      [see also: symlink rename unlinl]
+list                  (list objs...) Create a list
+list->vector          (list->vector list) create a vector from the elemnts of list
+listp                 (listp obj) A list?
+load                  (load file) load a file
+load                  (load filename) load a lisp file
+load-cont             (load-cont filename) load in a contour
+load-extensions       load-extensions  list of extensions to try for lisp files
+load-path             load-path  list of directories to search for lisp files
+load-segm             (load-segm filename) load in a segmented image
+load-view             (load-view filename) load in a view image
+localtime             (localtime [time]) return a vector of time info
+                      #(sec min hr mday mon yr wday yday isdst tzone gmtoff)
+log                   (log x [base]) take the natural [or base] logarithm
+log1p                 take the natural log of x+1
+loi-list              (loi-list) return list of lois
+lstat                 (lstat filename) return a vector conaining file info
+                      #(inode mode nlink uid gid size atime mtime ctime)
+macro                 (macro arglist body...) Define a macro
+macrop                A macro?
+make-range            (make-range lo hi) return a list of numbers from lo to hi (inclusive)
+makestr               (makestr len [char]) make an empty string of specified length
+makestruct            (makestruct len) create a struct of specified length
+makevector            (makevector len) create a vector of specified length
+mapcar                (mapcar fnc list) Apply function to all elems of list and
+                      and return list of results
+match                 (match regex string) does the string match the regex?
+max                   (max n ...) return the maximum of a bunch of numbers
+member                (member itm list) is item a member (equal) of list
+memory-stats          (memory-stats) return statistics on memory usage
+                      returns: #(cells_since_gc cells_being_used boxes_being_used cells_total
+                      	good_hints bad_hints gc_stats)
+memq                  (memq item list) is item a member (eq) of list
+memv                  (memv item list) is item a member (eqv) of list
+method                (method object method-name args...) call a class method
+min                   (min n ...) return the minimum of a bunch of numbers
+mk-help-txt           (mk-help-txt filename) create help file
+mkdir                 (mkdir dirname [mode]) create a directory
+modify-cmap           (modify-cmap n #(r g b) [ui]) install color map entry
+                      (modify-cmap #t [ignored [ui]]) install the colormap
+modulo                (modulo a b) the modulous of a b (has sign of b)
+mouse-set-loi         (mouse-set-loi x y [ui]) ...
+mouse:close-contour   (mouse:close-contour) close drawn contour
+mouse:last-x          x coord. of the most recent point on the contour
+mouse:last-y          y coord. of the most recent point on the contour
+mouse:mode            the current mouse mode
+mouse:selected        currently selected contour
+mouse:start-x         x coord. of the first point on the contour
+mouse:start-y         y coord. of the first point on the contour
+mri:3dconstraint      default snake 3D term
+mri:across            number of buttons across
+mri:add-pulldown      (mri:add-pulldown menu) add a menu to the top row
+mri:add-pulldown-left  (mri:add-pulldown-left menu) add a menu to the left on the top row
+mri:add-pulldown-right  (mri:add-pulldown-right menu) add a menu to the right on the top row
+mri:alpha             default segm alpha value
+mri:analyze-all       (mri:analyze-all) analyze all objects
+mri:attractive        default snake atractiveness
+mri:base_x            the x position of the base frame
+mri:base_y            the y position of the base frame
+mri:build-pt-db       build the patient database
+mri:button            (mri:button label action) create a button
+mri:buttons           a list of labels for the buttons
+mri:child_dx          the x delta of the child frame
+mri:child_dy          the y delta of the child frame
+mri:child_x           the x position of the child frame
+mri:child_y           the y position of the child frame
+mri:cursor-size       size of the cursor
+mri:debugdir          where to save debugging stuff
+mri:display-range     (mri:display-range lo high [ui]) display a block of images
+mri:display-range-nf  (mri:display-range-nf low high) display a block of images in a new frame)
+mri:display-series    (mri:display-series) display the entire series in blocks of 12
+mri:displayimage      (mri:displayimage img [ui]) display an image
+mri:elastic           default snake elasticity
+mri:erasor            size of erasor
+mri:etcdir            where some goodies are
+mri:frame-list        a list of all of the frames we have created thus far
+mri:helpfile          the help file
+mri:histogram         (mri:histogram) plot histogram
+mri:hst_x             the x position of the histogram popup
+mri:hst_y             the y position of the histogram popup
+mri:iml_h             the height of the image list
+mri:iml_r             the number of rows on the image list
+mri:iml_w             the width of the image list
+mri:iml_x             the x position of the image list
+mri:iml_y             the y position of the image list
+mri:init-msg          thunk to display initialization message
+mri:ip-mode           run in IP mode
+mri:level             default level
+mri:license           the license file
+mri:line-GXfnc        GX function: GXxor=6, GXset=15, GXor=7,... (see X.h)
+mri:line-style        line style: 1=solid, 2=dashed, 3=double-dashed
+mri:line-value        value of drawn lines
+mri:line-width        the width of lines you draw
+mri:lsd               (mri:lsd [upto 5 numbers]) install psychadelic color map
+mri:makblock          (mri:makblock width height img1 img2 ...) make images into a block
+mri:maxiter           max # of iters when minimizing snake
+mri:menu              (mri:menu items...) create a menu
+mri:nlev              default number of segm levels
+mri:parse-X           (mri:parse-X str) parse -XS:F -XF debugging flags from the command line
+mri:patdir            where the mri-scans are
+mri:patients          list of patients for this project
+mri:percent           max # of iters when minimizing snake
+mri:postscript        (mri:postscript file width height [border [extras]]) create postscript
+mri:ps:arrow          (mri:ps:arrow xo yo xi yi) place an arrow on the postscript output
+mri:ps:defaults       (mri:ps:defaults) reset decorations
+mri:ps:label          (mri:ps:label txt x y) place a label on the postscript output
+mri:ps:title          (mri:ps:title title) place a title on the postscript output
+mri:ptl_h             the height of the patient list
+mri:ptl_r             the number of rows on the patient list
+mri:ptl_w             the width of the patient list
+mri:ptl_x             the x position of the patient list
+mri:ptl_y             the y position of the patient list
+mri:rdb:doit-p        read files over remote connection?
+mri:rdb:host          the remote database server host
+mri:rdb:port          the remote database server port
+mri:rng_x             the x position of the range popup
+mri:rng_y             the y position of the range popup
+mri:savedir           where to save stuff
+mri:savename          the name of the data file
+mri:segm:maxiter-g    max number of gibbs iterations
+mri:segm:maxiter-k    max number of kmean iterations
+mri:segmdir           where the segm data is kept
+mri:sel_h             the height of the series list
+mri:sel_r             the number of rows on the series list
+mri:sel_w             the width of the series list
+mri:sel_x             the x position of the series list
+mri:sel_y             the y position of the series list
+mri:set-header        (mri:set-header) sets the frame header
+mri:sgm_x             the x position of the segm popup
+mri:sgm_y             the y position of the segm popup
+mri:similarity        default snake similararity
+mri:slt_x             the x position of the selection popup
+mri:slt_y             the y position of the selection popup
+mri:snk_x             the x position of the snake popup
+mri:snk_y             the y position of the snake popup
+mri:statefile         the name of the state file
+mri:stiffness         default snake stiffness
+mri:stl_h             the height of the study list
+mri:stl_r             the number of rows on the study list
+mri:stl_w             the width of the study list
+mri:stl_x             the x position of the study list
+mri:stl_y             the y position of the study list
+mri:stop-iterating    signal the snake to stop iterating
+mri:top-row           a list describing the buttons and menus along the top of the tool
+mri:version           mri:version  what version of mritool are we using
+mri:versn             mri:version  what version of mritool are we using
+mri:visine            (mri:visine) get the red out
+mri:window            default window
+mriname               (mriname name) expand name
+nboundp               (nboundp x) Not been bound a value?
+nconsp                (nconsp obj) An atom?
+ndefinedp             (ndefinedp x) Not been defined?
+new-frame             (new-frame) create a new window frame, if possible
+new-nowin             (new-nowin) create a new non-window interactive frame
+new-xv                (new-xv) create a new window frame
+newline               (newline [port]) output a newline [to a specified port]
+nfalsep               (nfalsep x) Not #f?
+nnullp                (nnullp x) Not ()?
+nop                   (nop) does nothing
+not                   (not value) boolean not
+nth                   (nth obj index) snarf the specified nth element
+nullp                 ()?
+number->string        (number->string number [radix]) convert number to a string
+                      [see also: string->number]
+numberp               (numberp obj) A number?
+nzerop                (nzerop x) Not zero?
+open:append           (open:append filename) Open a file for appending
+open:read             (open:read filename) Open a file for reading
+open:read/write       (open:read/write filename) Open a file for reading and writing
+open:string           (open:string string) Open a string as an io port
+open:write            (open:write filename) Open a file for writing
+or                    (or value...) boolean or
+output-of-shell-command->string  (output-of-shell-command->string command) return the output of running the command
+                      much like using `command` in the shell
+outputportp           A writable ioport?
+patient-info          (patient-info) return useful patient info
+patient-list          (patient-list) return list of patients
+pi                    the ratio of the circumference to the diameter of a circle
+pow                   (pow n1 n2) take n1 to the n2 power
+print                 (print args...) print the args on stdout
+print-stderr          (print-stderr port args...) print the args on stderr
+print-with-port       (print-with-port port args...) print the args on specified port
+procedurep            A procedure?
+progn                 (progn body...) eval body
+prompt                (prompt) displays the repl prompt
+putc                  (putc char [port]) Write a character to the specified port
+quit                  (quit [value]) All done!
+quote                 (quote arg) Quote arg
+quotient              (quotient a b) the integer division of a b
+random                (random) return a random number
+rassoc                (rassoc relt alist) is item the cdr of a member (equal) of alist
+rassq                 (rassq relt alist) is item the cdr of a member (eq) of alist
+rassv                 (rassv relt alist) is item the cdr of a member (eqv) of alist
+rdb:arcv              (rdb:arcv) archive marked items
+rdb:dele              (rdb:arcv) delete marked items
+rdb:mark              (rdb:mark ...
+rdb:mark-image        (rdb:mark-image [ui]) mark for archiving
+rdb:mark-patient      (rdb:mark-patient [ui]) mark for archiving
+rdb:mark-series       (rdb:mark-series [ui]) mark for archiving
+rdb:mark-study        (rdb:mark-study [ui]) mark for archiving
+read                  (read [port]) read in an expression
+readlink              (readlink linkname) return the file referenced by the symlink
+                      [see also: symlink]
+refresh               (refresh [img] [ui]) refresh the image window
+remainder             (remainder a b) the remainder of integer division (has the sign of a)
+remove                (remove item list) remove item (equal) from list
+remq                  (remq item list) remove item (eq) from list
+remv                  (remv item list) remove item (eqv) from list
+rename                (rename from-file to-file) rename a file
+                      [see also: link symlink unlink]
+repl                  (repl) read eval print loop 
+reverse               (reverse list) reverse a list
+rmdir                 (rmdir dirname) delete the specified directory
+round                 (round n) round towards nearest integer
+run-hooks             (run-hooks hooks) run hooks
+save                  (save what [from to] [filename]) save things, segm, contour, view
+save-contour          (save-contour from to filename) save contours
+save-segment          (save-segment from to filename) save segmented images
+save-view             (save-view from to filename) save viewable images
+seek                  (seek port offset) move file postion
+segment               (segment from to levels alpha [wsize]) segment a series of images
+series-info           (series-info) return useful series info
+series-list           (series-list) return list of series
+set                   (set ...) set various parameters,
+                      such as patient, study, series, image
+set!                  (set! symbol value) Set the value of a symbol
+set-car!              (set-car! cell value) Set the CAR of a cell
+set-cdr!              (set-cdr! cell value) Set the CDR of a cell
+set-contour           (set-contour img [ui]) 
+set-current-ui!       (set-current-ui! ui) set the current ui
+set-debug-backtrace   (set-debug-backtrace depth) set the debug flag on the function
+                      depth levels back on the stack frame
+set-debug-flag!       (set-debug-flag! section field [flag]) set debugging flags
+set-fimg              (set-fimg img [ui]) set the fimg
+set-frame-size        (set-frame-size width height [ui])
+set-header-text       (set-headerr-text text [ui]) set the header text
+set-image             (set-image imgno) set the current image
+set-left-footer-text  (set-left-footer-text text [ui]) set the left footer text
+set-loi               (set-loi {n | (l . n)}...) set LOI of contours
+set-mode-segm         (set-mode-segm) set the viewing mode
+set-mode-view         (set-mode-view) set the viewing mode
+set-nth!              (set-nth! obj index value) Set the specified element
+set-patient           (set-patient PID) set the current patient
+set-props!            (set-props! symbol proplist) Set the plist of a symbol
+set-props-nq!         (set-props-nq! symbol proplist) Set the plist of a symbol
+set-right-footer-text  (set-right-footer-text text [ui]) set the right footer text
+set-segm              (set-segm img [ui]) 
+set-series            (set-series seriesno) set the current series
+set-study             (set-study studyno) set the current study
+set-view              (set-view img [ui]) set the view image
+setegid               (setegid n) set the effective group id
+seteuid               (setuid n) set the effective user id
+setgid                (setgid n) set the group id
+sets!                 (sets! name val) sets name to val, possibly with some type checking...
+setuid                (setuid n) set the user id
+show                  (show ...) show various parameters,
+                      such as: patients, studies, series, images, info, stats
+show-bounds-popup     (show-bounds-popup) popup vounds window
+show-box              (show-box xo yo xi yi [ui]) show a box
+show-graph-popup      (show-graph-popup) popup the graph window
+show-help-popup       (show-help-popup) popup the help window
+show-image-popup      (show-image-popup) popup image list
+show-license-popup    (show-license-popup) popup the license window
+show-lut              (show-lut [u]) show the color lookup table
+show-measure-popup    (show-measure-popup) popup measure window
+show-patient-popup    (show-patient-popup) popup patient list
+show-segm-popup       (show-segm-popup) popup the segm window
+show-snake-popup      (show-snake-popup) popup snake window
+show-stats            (show-stats [n]) show stats
+show-trace            (show-trace) display a backtrace of calls made
+                      if given an argument, will be more verbose
+show-trace-on-error   should we get a stack trace on error?
+sin                   take the sin
+sinh                  take the hyperbolic sin
+sleep                 (sleep secs) sleep for a specified number of seconds
+snake-range           (snake-range from to elast attr stiff 3d siml) snake a set of images
+snake-slice           (snake-slice how elast attr stiff 3d siml) snake an image
+socketpair            (socketpair) returns a pair of ports
+solid->vector         (solid->vector solid) returns a vector of images
+solid-edgemap         (solid-edgemap solid) find the surface of a binary solid
+solid-projection      (solid-projection solid ex ey ez) create a projection of the solid
+solidp                (solidp obj) is this a solid?
+sqrt                  take the square root
+stat                  (stat filename) return a vector conaining file info
+                      #(inode mode nlink uid gid size atime mtime ctime)
+strappend!            (strappend! string chars...) append chars to end of string
+strcat                (strcat strings...) Concatenate strings
+strcpy                (strcpy string) return a copy of a string
+strindex              (strindex str c) return offset of first occurance of c in string
+string->number        (string->number string [radix]) convert string to a number
+                      [see also: number->string]
+string->symbol        (string->symbol string) returns the symbolwith the look of string
+stringp               A string?
+strsplit              (strsplit str (chars...)) split string at the specified chars
+structp               A struct?
+study-info            (study-info) return useful study info
+study-list            (study-list) return list of studies
+substr                (substr string start len) extract substring
+symbol->string        (symbol->string symbol) return the name of the symbol as a string
+symbolp               A symbol?
+symlink               (symlink from-file to-file) symbolic link a file
+                      [see also: link rename unlink readlink]
+symlookup             (envlookup symbol symboltable) Lookup symbol in the symbol table
+system                (system command)  have the system execute command
+tan                   take the tangent
+tanh                  take the hyperbolic tangent
+tell                  (tell port) return the current file postion
+thinking              (thinking [ui]) begin pondering
+throw                 (throw tag [value]) jump out of the matching catch frame
+                      if a value is given, it will be the return value from the matching (eqv) catch
+                      if there is no matching catch, throw will return #f
+                      [see also: catch unwind-protect]
+truep                 truep x) is x #t?
+truncate              (truncate n) round towards 0
+typeof                (typeof obj) return string containing the name of the type of object
+ui-p                  (ui-p obj) is this a ui?
+umask                 (umask mode) set the umask
+undefined-object      (undefined-object) return the #<undefined> object
+unexec                (unexec new-filename old-filename) dump out a new executable image
+ungetc                (ungetc char [port]) un-get a character from the specified port
+unintered-symbol      (unintered-symbol) returns a unique unintered symbol
+unless                (unless test body...) evaluate body unless test is #t
+unlink                (unlink filename) delete the specified file
+unquote               ,expr unquote expr within a backquoted expr
+unquote-splice        ,@expr unquote and splice within a backquoted expr
+unspecified-object    (unspecified-object) return the #<unspecified> object
+unwind-protect        (unwind-protect now-form later-forms...)
+                      make sure later-forms get eval'ed even if we throw
+                      while doing now-form, returns the result of now-form
+                      [see-also: catch throw]
+usleep                (usleep usecs) sleep for a specified number of microseconds
+vector                (vector objs...) create a vector
+vector->Fsolid        (vector->Fsolid vector) returns a solid of the vector of images
+vector->Usolid        (vector->Usolid vector) returns a solid of the vector of images
+vector->list          (vector->list vector) create a list from elements of vector
+vectorp               A vector?
+version               (version) What version are we using?
+vfork                 (vfork) vfork the process
+visine                (visine [img] [ui]) gets the red out
+wait                  (wait) wait for child to exit, returns (pid . status)
+                      [see also: waitpid fork]
+waitpid               (waitpid pid [options]) wait for specified child to exit, returns (pid . status)
+                      [see also: wait fork]
+weak-obj              (weak-obj weak) return the obj held by weak
+weak-ok?              (weak-ok? weak) has the obj held not been reclaimed?
+weak-set!             (weak-set! weak obj) set the weakly held obj of weak to obj
+                       returns obj
+weakly                (weakly obj) creates a weakly held obj
+                      which may be GC'ed
+                      [see also: 
+weakp                 (weakp obj) is obj a weakly held obj?
+when                  (when test body...) evaluate body iff test is #t
+while                 (while test body...) iterative looping construct
+write                 (write obj [port]) Display the object in read form
+xdefine               (xdefine name value predicate preproc [docstring])
+                      defines name as val and adds a few properties to the alist, for type safety
+                      [see also: sets!]
+xyz-projections       (xyz_projections solid) return the 3 primary projections
+yamakah2D             (yamakah2D level1 level2 level3 thick theta squish [from to]) preliminary step in extracting cortex
+yamakah3D             (yamakah3D level1 level2 level3 thick theta squish [from to]) preliminary step in extracting cortex
+zerop                 zero?
+|                     (| n m) bitwise or
+~                     (~ n) bitwise not

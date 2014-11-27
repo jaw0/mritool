@@ -1,0 +1,59 @@
+#!/bin/sh
+
+ARGS=""
+Oflags=""
+
+while [ $# -gt 0 ]; do
+	case $1 in
+
+	  *.cc|*.c)
+		FILE=$1		;;
+	esac
+	ARGS="$ARGS $1"
+	shift
+done
+
+if [ "$FILE" != "" ]; then
+	Oflags=`egrep '^// [Oo]ptimization: ' $FILE | sed 's,^// [Oo]ptimization: ,,'`
+
+	case $Oflags in
+	  None|No|Off)
+		Oflags=""	;;
+
+	  On|Std|Yes)
+		Oflags=-O	;;
+
+	  Full|High|Good)
+		Oflags=-O2	;;
+
+	  -*)
+				;;
+
+	  *)
+		Oflags=-O2	;;
+
+	esac
+
+fi
+echo $FILE : $Oflags
+
+# copy file to other site
+# and remove remote .o file (so we don't copy it back again, and again,...)
+if [ -f `basename $FILE .cc`.o ]; then
+
+	d=`pwd | sed 's/.*mritool-V2.1//'`
+	case `hostname` in
+		gyrus*)
+			rsh orion.ee rm src/tarbs/mritool-V2.1/$d/`basename $FILE .cc`.o
+			rcp $FILE orion.ee:src/tarbs/mritool-V2.1/$d
+			;;
+		*)
+		#	rsh gyrus.neurology rm /home/gyrus/src/local/mritool-V2.1/$d/`basename $FILE .cc`.o
+		#	rcp $FILE gyrus.neurology:/home/gyrus/src/local/mritool-V2.1/$d
+			;;
+	esac
+fi
+
+g++ $Oflags $ARGS
+
+exit $?
